@@ -18,3 +18,21 @@ discord command SLtest:
     trigger:
         embed("작동 테스트 - 성공","현재 봇이 정상적으로 작동하고 있습니다.","SLAVot v1.0 by αGot, Gble")
         reply with last created embed
+
+discord command SLhelp:
+    trigger:
+        set {_helptext} to "슬라봇 도움말:%nl%  - SLtest: 작동 테스트를 합니다.%nl%  - SLhelp: 도움말을 출력합니다."
+        embed("슬라봇 - 도움",{_helptext},"SLAVot v1.0 by αGot, Gble")
+        reply with last created embed
+
+every 15 seconds:
+    mark "SLAVot" as playing "문의: gble##3705"
+    wait 3 seconds
+    mark "SLAVot" as playing "도움: SLhelp"
+    wait 3 seconds
+    mark "SLAVot" as playing "홍보 배너 빕니다 1"
+    wait 3 seconds
+    mark "SLAVot" as playing "홍보 배너 빕니다 2"
+    wait 3 seconds
+    mark "SLAVot" as playing "홍보 배너 빕니다 3"
+    wait 3 seconds
