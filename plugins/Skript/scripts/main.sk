@@ -1,0 +1,20 @@
+variables:
+    {li} = 0
+
+on load:
+    load yaml "configs/slavot-config.yml" as "configs/slavot-config.yml"
+    set {li} to yaml value "login.token" from "configs/slavot-config.yml"
+    login to "%{li}%" with name "SLAVot"
+    send "&6%{li}%(이)가 성공적으로 로그인되었습니다." to the console
+
+function embed(title: text,desc: text,footer:text):
+    create embed:
+        set title of the embed to "%{_title}%"
+        set colour of the embed to GREEN
+        set description of embed to "%{_desc}%"
+        set footer of embed to footer with text "%{_footer}%"
+
+discord command SLtest:
+    trigger:
+        embed("작동 테스트 - 성공","현재 봇이 정상적으로 작동하고 있습니다.","SLAVot v1.0 by αGot, Gble")
+        reply with last created embed
