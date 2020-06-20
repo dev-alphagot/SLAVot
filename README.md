@@ -1,4 +1,5 @@
 # SLAVot
+쿠분투 병신
 이 레포지토리는 WTFPLv2 라이선스를 따릅니다. 전문은 아래와 같습니다.
 
 DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
