@@ -1,5 +1,5 @@
 options:
-    botname: SLAVot
+    botname : SLAVot
 
 variables:
     {li} = 0
@@ -19,18 +19,18 @@ function embed(title: text,desc: text,footer:text):
 
 discord command SLtest:
     trigger:
-        embed("작동 테스트 - 성공","현재 봇이 정상적으로 작동하고 있습니다.","SLAVot v1.0 by αGot, Gble")
+        embed("작동 시험 - 성공","현재 봇이 정상적으로 작동하고 있다우.","SLAVot v1.0 by αGot, Gble")
         reply with last created embed
 
 discord command SLhelp:
     trigger:
-        set {_helptext} to "슬라봇 도움말:%nl%  - SLtest: 작동 테스트를 합니다.%nl%  - SLhelp: 도움말을 출력합니다.%nl%  - SLmusichelp: 음악 명령어에 대한 도움말을 출력합니다."
-        embed("슬라봇 - 도움",{_helptext},"SLAVot v1.0 by αGot, Gble")
+        set {_helptext} to "슬라봇 도움말:%nl%  - SLtest: 작동 시험을 한다우.%nl%  - SLhelp: 도움말을 출력한다우.%nl%  - SLmusichelp: 음악 명령어에 대한 도움말을 출력한다우.%nl%  - SLpokedex (숫자): 숫자에 해당하는 포켓몬 이름을 출력한다우."
+        embed("슬라봇 - 도움",{_helptext},"SLAVot v1.0 by αGot, Gble | 東方星蓮船##2214")
         reply with last created embed
 
 discord command SLmusichelp:
     trigger:
-        set {_helptext} to "슬라봇 음악 도움말:%nl%  - SLplay (링크): (링크)의 동영상을 재생합니다.%nl%  - SLqueue: 재생 목록을 출력합니다.%nl%  - SLpause: 음악을 일시정지합니다.%nl%  - SLresume: 일시정지한 곡을 다시 재생합니다.%nl%  - SLstop: 음악을 멈춥니다.%nl%  - SLskip: 음악을 넘깁니다.%nl%  - SLinfo: 현재 재생 중인 곡의 설명을 표시합니다."
+        set {_helptext} to "슬라봇 음악 도움말:%nl%  - SLplay (링크): (링크)의 동영상을 재생한다우.%nl%  - SLqueue: 재생 목록을 출력한다우.%nl%  - SLpause: 음악을 일시정지한다우.%nl%  - SLresume: 일시정지한 곡을 다시 재생한다우.%nl%  - SLstop: 음악을 멈춘다우.%nl%  - SLskip: 음악을 넘긴다우.%nl%  - SLinfo: 현재 재생 중인 곡의 설명을 표시한다우."
         embed("슬라봇 - 음악도움",{_helptext},"SLAVot v1.0 by αGot, Gble, Music code by https://www.spigotmc.org/resources/discord-music-bot-skript.70970/")
         reply with last created embed
 
@@ -46,14 +46,14 @@ discord command SLplay [<text>]:
         if voice channel of event-member is set:
             if arg 1 is set:
                 if arg 1 contains "index" or "start_radio":
-                    reply with "명령 인자가 올바르지 않습니다. 유튜브 링크를 입력해주세요. :x:"
+                    reply with "지금 뭐하는건가? 명령 인자가 바르지 않잖아! 이래선 혁-명적인 우리의 로동을 할수 있겠나? :x:"
                     stop
                 if arg 1 contains "youtube.com" or "youtu.be":
                     join voice channel of event-member
                     play arg-1
                     search youtube for "%arg-1%" and store the results in {_results::*}
                     create embed:
-                        set the title of embed to "음악 - 재생 중"
+                        set the title of embed to "음악 - 재생 목록에 추가됐네. 동무."
                         set the thumbnail of embed to "https://img.youtube.com/vi/%identifier of {_results::1} %/hqdefault.jpg"
                         set the description of embed to "%{_results::1}%"
                         set the footer of embed to footer with text "%event-user%"
@@ -68,7 +68,7 @@ discord command SLplay [<text>]:
                         join voice channel of event-member
                         play {_results::1}
                         create embed:
-                            set the title of embed to "음악 - 재생목록에 추가됨"
+                            set the title of embed to "음악 - 틀고있는 중이라네. 이걸 들으며 로동을 하게나."
                             set the thumbnail of embed to "https://img.youtube.com/vi/%identifier of {_results::1} %/hqdefault.jpg"
                             set the footer of embed to footer with text "%event-user%"
                             add field named "노래 재생시간" with value "%duration of {_results::1} %" to embed
@@ -78,15 +78,15 @@ discord command SLplay [<text>]:
                         send the last created embed to event-channel with event-bot
                     else:
                         create embed:
-                            set the title of embed to "트랙을 찾을 수 없습니다"
+                            set the title of embed to "트랙이 숙청당한거 같습니다. 존재하지 않습니다. 동무."
                             set the footer of embed to footer with text "%event-user%"
                             set the timestamp of embed to now
                             set the color of embed to red
                         send the last created embed to event-channel with event-bot
             else:
-                reply with "명령 인자가 올바르지 않습니다. 트랙 이름이나 유튜브 링크를 입력해주세요. :x:"
+                reply with "지금 뭐하는건가? 명령 인자가 바르지 않잖아! 이래선 혁-명적인 우리의 로동을 할수 있겠나? :x:"
         else:
-            reply with "음성 채널에 들어가주세요."
+            reply with "음성 채널에 들어가야 들을수 있다네. 동무."
  
  
 discord command SLqueue:
@@ -96,7 +96,7 @@ discord command SLqueue:
         set {_queue::*} to queue of event-bot
         set {_num} to -1
         make embed:
-            set title of embed to title with text "음악 - 재생 목록"
+            set title of embed to title with text "음악 - 재생 목록이요 동무."
             loop 11 times:
                 add 1 to {_num}
                 if {_queue::%{_num}%} is set:
@@ -110,7 +110,7 @@ discord command SLpause:
     trigger:
         purge the event-message with event-bot
         make embed:
-            set title of embed to title with text "음악 - 일시정지됨"
+            set title of embed to title with text "음악 - 어딜 가는거요? 동무?"
             set description of embed to "%discord name of track event-bot is playing%"
             set the footer of embed to footer with text "%event-user%"
             set the timestamp of embed to now
@@ -123,7 +123,7 @@ discord command SLresume:
         purge the event-message with event-bot
         resume the track event-bot is playing
         make embed:
-            set title of embed to title with text "음악 - 일시정지 해제됨"
+            set title of embed to title with text "음악 - 다시 일합시다 동무."
             set description of embed to "%discord name of track event-bot is playing%"
             set the footer of embed to footer with text "%event-user%"
             set the timestamp of embed to now
@@ -134,7 +134,7 @@ discord command SLstop:
     trigger:
         purge the event-message with event-bot
         make embed:
-            set title of embed to title with text "음악 - 중지됨"
+            set title of embed to title with text "음악 - 멈췄습니다 동무"
             if track "{@botname}" is playing is set:
                 set description of embed to "%discord name of track event-bot is playing%"
             set the footer of embed to footer with text "%event-user%"
@@ -149,7 +149,7 @@ discord command SLskip:
         purge the event-message with event-bot
         if track "{@botname}" is playing is set:
             make embed:
-                set title of embed to title with text "음악 - 스킵됨"
+                set title of embed to title with text "음악 - 반동분자 음악을 넘어갑니다 동무"
                 set description of embed to "%discord name of track event-bot is playing%"
                 set the thumbnail of embed to "https://img.youtube.com/vi/%identifier of {_results::1} %/hqdefault.jpg"
                 skip the track event-bot is playing
@@ -162,7 +162,7 @@ discord command SLskip:
             reply with last created embed
         else:
             make embed:
-                set title of embed to title with text "음악 - 재생목록 비었음"
+                set title of embed to title with text "음악 - 재생목록이 없다네 동무."
                 set the footer of embed to footer with text "%event-user%"
                 set the timestamp of embed to now
                 set the color of embed to red
@@ -176,13 +176,21 @@ discord command SLinfo:
                 set title of embed to title with text "%discord name of track event-bot is playing%" and link "%url of track event-bot is playing%"
                 set the colour of the embed to green
                 add field named "남은 시간" with value "%difference between position of track event-bot is playing and duration of track event-bot is playing%" to embed
-                add field named "재생한 사람" with value "%authors of track event-bot is playing%" to embed
+                add field named "영상을 올린 동무의 이름" with value "%authors of track event-bot is playing%" to embed
                 set the image of embed to "https://img.youtube.com/vi/%identifier of track event-bot is playing%/hqdefault.jpg"
                 set the color of embed to blue
         else:
             make embed:
-                set title of embed to title with text "Nothing is played!"
+                set title of embed to title with text "음악 - 음악? 그런건 소비에트음악이나 들으라고!"
                 set the color of embed to red
+        reply with last created embed
+
+discord command SLpokedex <integer>:
+    trigger:
+        set {_pkdex::*} to read file "configs/pokedex.txt"
+        set {_tmp::*} to split {_pkdex::%arg 1%} at "	"
+        send "%{_tmp}%" to console
+        embed("슬라봇 - 포켓몬 도감","%{_tmp::4}%","SLAVot v1.0 by αGot, Gble")
         reply with last created embed
 
 every 15 seconds:
@@ -190,9 +198,9 @@ every 15 seconds:
     wait 3 seconds
     mark "SLAVot" as playing "도움: SLhelp"
     wait 3 seconds
-    mark "SLAVot" as playing "홍보 배너 빕니다 1"
+    mark "SLAVot" as playing "TMI: 개발자의 키는 163이다"
     wait 3 seconds
-    mark "SLAVot" as playing "홍보 배너 빕니다 2"
+    mark "SLAVot" as playing "SLAV의 키는 171 이상으로 추정된다"
     wait 3 seconds
     mark "SLAVot" as playing "홍보 배너 빕니다 3"
     wait 3 seconds
