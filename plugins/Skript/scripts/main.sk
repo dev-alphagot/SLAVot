@@ -10,28 +10,28 @@ on load:
     login to "%{li}%" with name "SLAVot"
     send "&6%{li}%(이)가 성공적으로 로그인되었습니다." to the console
 
-function embed(title: text,desc: text,footer:text):
+function embed(title: text,desc: text,footer:text,color:colour):
     create embed:
         set title of the embed to "%{_title}%"
-        set colour of the embed to GREEN
+        set color of the embed to green
         set description of embed to "%{_desc}%"
         set footer of embed to footer with text "%{_footer}%"
 
 discord command SLtest:
     trigger:
-        embed("작동 시험 - 성공","현재 봇이 정상적으로 작동하고 있다우.","SLAVot v1.0 by αGot, Gble")
+        embed("작동 시험 - 성공","현재 봇이 정상적으로 작동하고 있다우.","SLAVot v1.0 by αGot, Gble",green)
         reply with last created embed
 
 discord command SLhelp:
     trigger:
         set {_helptext} to "슬라봇 도움말:%nl%  - SLtest: 작동 시험을 한다우.%nl%  - SLhelp: 도움말을 출력한다우.%nl%  - SLmusichelp: 음악 명령어에 대한 도움말을 출력한다우.%nl%  - SLpokedex (숫자): 숫자에 해당하는 포켓몬 이름을 출력한다우."
-        embed("슬라봇 - 도움",{_helptext},"SLAVot v1.0 by αGot, Gble | 東方星蓮船##2214")
+        embed("슬라봇 - 도움",{_helptext},"SLAVot v1.0 by αGot, Gble | 東方星蓮船##2214",green)
         reply with last created embed
 
 discord command SLmusichelp:
     trigger:
         set {_helptext} to "슬라봇 음악 도움말:%nl%  - SLplay (링크): (링크)의 동영상을 재생한다우.%nl%  - SLqueue: 재생 목록을 출력한다우.%nl%  - SLpause: 음악을 일시정지한다우.%nl%  - SLresume: 일시정지한 곡을 다시 재생한다우.%nl%  - SLstop: 음악을 멈춘다우.%nl%  - SLskip: 음악을 넘긴다우.%nl%  - SLinfo: 현재 재생 중인 곡의 설명을 표시한다우."
-        embed("슬라봇 - 음악도움",{_helptext},"SLAVot v1.0 by αGot, Gble, Music code by https://www.spigotmc.org/resources/discord-music-bot-skript.70970/")
+        embed("슬라봇 - 음악도움",{_helptext},"SLAVot v1.0 by αGot, Gble, Music code by https://www.spigotmc.org/resources/discord-music-bot-skript.70970/",green)
         reply with last created embed
 
 on track end:
@@ -190,7 +190,7 @@ discord command SLpokedex <integer>:
         set {_pkdex::*} to read file "configs/pokedex.txt"
         set {_tmp::*} to split {_pkdex::%arg 1%} at "	"
         send "%{_tmp}%" to console
-        embed("슬라봇 - 포켓몬 도감","%{_tmp::4}%","SLAVot v1.0 by αGot, Gble")
+        embed("슬라봇 - 포켓몬 도감","%{_tmp::4}%","SLAVot v1.0 by αGot, Gble",green)
         reply with last created embed
 
 every 15 seconds:
