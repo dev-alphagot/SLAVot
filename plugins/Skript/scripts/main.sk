@@ -3,10 +3,11 @@ options:
 
 variables:
     {li} = 0
+    {warn} = 0
 
 on load:
-    load yaml "configs/slavot-config.yml" as "configs/slavot-config.yml"
-    set {li} to yaml value "login.token" from "configs/slavot-config.yml"
+    load yaml "files/slavot-config.yml" as "files/slavot-config.yml"
+    set {li} to yaml value "login.token" from "files/slavot-config.yml"
     login to "%{li}%" with name "SLAVot"
     send "&6%{li}%(이)가 성공적으로 로그인되었습니다." to the console
 
@@ -19,7 +20,8 @@ function embed(title: text,desc: text,footer:text,color:colour):
 
 discord command SLtest:
     trigger:
-        embed("작동 시험 - 성공","현재 봇이 정상적으로 작동하고 있다우.","SLAVot v1.0 by αGot, Gble",green)
+        set {_uses::*} to read file "wmglvar.txt"
+        embed("작동 시험 - 성공","현재 봇이 정상적으로 작동하고 있다우.%nl% - CPU 사용량: %{_uses::1}% %%%nl% - 메모리 사용량: %{_uses::2}% MB","SLAVot v1.0 by αGot, Gble",green)
         reply with last created embed
 
 discord command SLhelp:
@@ -187,11 +189,26 @@ discord command SLinfo:
 
 discord command SLpokedex <integer>:
     trigger:
-        set {_pkdex::*} to read file "configs/pokedex.txt"
+        set {_pkdex::*} to read file "files/pokedex.txt"
         set {_tmp::*} to split {_pkdex::%arg 1%} at "	"
         send "%{_tmp}%" to console
         embed("슬라봇 - 포켓몬 도감","%{_tmp::4}%","SLAVot v1.0 by αGot, Gble",green)
         reply with last created embed
+
+discord command SLwarn <text> <integer> <text>:
+    trigger:
+        set {_romantictp} to arg 3 parsed as member
+        if arg 1 is "add":
+            set {warn::%{_romantictp}%} to "%{warn::%{_romantictp}%} + arg 2%" parsed as integer
+            embed("슬라봇 - 경고추가","반동분자 %arg 2%(이)가 경고를 받았다우.","SLAVot v1.0 by αGot, Gble",green)
+        else if arg 1 is "set":
+            set {warn::%{_romantictp}%} to arg 2
+            embed("슬라봇 - 경고설정","반동분자 %arg 2%의 경고를 설정했다우.","SLAVot v1.0 by αGot, Gble",green)
+
+discord command SLvwarn <text>:
+    trigger:
+        set {_romantictp} to arg 1 parsed as member
+        embed("슬라봇 - 경고보기","%arg 1%의 경고: %{warn::%{_romantictp}%}%개","SLAVot v1.0 by αGot, Gble",green)
 
 every 15 seconds:
     mark "SLAVot" as playing "문의: gble##3705"
